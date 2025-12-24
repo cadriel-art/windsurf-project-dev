@@ -1,6 +1,7 @@
 # Futuristic Website Design (CMS Template)
 
 A static sci-fi portfolio template with a local-only “mini CMS” editor.
+<img width="1237" height="1153" alt="image" src="https://github.com/user-attachments/assets/b56570e1-14f8-4eb1-9124-17f410f2d791" />
 
 ## How it works
 
