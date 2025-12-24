@@ -198,11 +198,15 @@ function renderCapabilitiesSection(config) {
 
 function initHeroHeadlineDustSwap() {
   if (window.__heroHeadlineDustBound) return;
-  window.__heroHeadlineDustBound = true;
 
   const hero = document.querySelector(".hero");
   const h1 = document.querySelector(".hero .glitch");
   if (!hero || !h1) return;
+
+  const baseText = (h1.textContent || "").trim();
+  const allowSwap = baseText.length > 0;
+
+  window.__heroHeadlineDustBound = true;
 
   const canvas = document.createElement("canvas");
   canvas.className = "hero-dust-canvas";
@@ -218,8 +222,9 @@ function initHeroHeadlineDustSwap() {
     swirlCenter: { x: 0, y: 0 },
     targetRect: null,
     running: false,
-    baseText: h1.textContent || "",
-    nextText: "Lorem Ipsum this!",
+    baseText,
+    nextText: allowSwap ? "Lorem Ipsum this!" : "",
+    allowSwap,
   };
 
   function resize() {
@@ -242,6 +247,17 @@ function initHeroHeadlineDustSwap() {
       cx: r.left - hr.left + r.width / 2,
       cy: r.top - hr.top + r.height / 2,
     };
+  }
+
+  function getTargetRect() {
+    if ((h1.textContent || "").trim().length) {
+      return rectInHero(h1);
+    }
+    const fallback =
+      hero.querySelector(".glitch-wrapper") ||
+      hero.querySelector(".hero-panel") ||
+      hero;
+    return rectInHero(fallback);
   }
 
   function rand(min, max) {
@@ -352,9 +368,16 @@ function initHeroHeadlineDustSwap() {
     }
 
     if (state.phase === "linger" && t > 1.2) {
-      h1.textContent = state.nextText;
-      h1.setAttribute("data-text", state.nextText);
-      const nextRect = rectInHero(h1);
+      if (state.allowSwap) {
+        const nextText = state.nextText || "";
+        h1.textContent = nextText;
+        if (nextText) {
+          h1.setAttribute("data-text", nextText);
+        } else {
+          h1.removeAttribute("data-text");
+        }
+      }
+      const nextRect = getTargetRect();
       setTargets({ x: nextRect.x, y: nextRect.y, w: nextRect.w, h: nextRect.h });
       setPhase("regroup");
       window.setTimeout(() => h1.classList.remove("is-hidden"), 400);
@@ -378,7 +401,12 @@ function initHeroHeadlineDustSwap() {
         const showForMs = 4200;
         window.setTimeout(() => {
           if (state.running) return;
-          state.nextText = state.nextText === state.baseText ? "Lorem Ipsum this!" : state.baseText;
+          if (state.allowSwap) {
+            state.nextText =
+              state.nextText === state.baseText ? "Lorem Ipsum this!" : state.baseText;
+          } else {
+            state.nextText = "";
+          }
           startSequence();
         }, showForMs);
       }
@@ -389,7 +417,7 @@ function initHeroHeadlineDustSwap() {
 
   function startSequence() {
     resize();
-    const r = rectInHero(h1);
+    const r = getTargetRect();
     state.swirlCenter = { x: r.cx, y: r.cy };
     const count = Math.floor(Math.max(120, Math.min(260, (r.w * r.h) / 420)));
     state.particles = spawnFromRect(r, count);

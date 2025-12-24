@@ -89,7 +89,7 @@
       ],
     },
     hero: {
-      headline: "AI Developer",
+      headline: "",
       typingText: "Building the future with code & intelligence",
       description:
         "Specializing in React, TypeScript, and full-stack development with expertise in AI integration, microservices architecture, and cutting-edge web technologies.",
