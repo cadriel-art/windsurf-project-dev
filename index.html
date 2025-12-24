@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Dev Portfolio | Elemental Edition</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/cards.css" />
+  </head>
+  <body>
+    <div class="cursor" aria-hidden="true"></div>
+    <div class="cursor-dot" aria-hidden="true"></div>
+
+    <canvas id="particles-canvas" aria-hidden="true"></canvas>
+    <div class="grid-bg" aria-hidden="true"></div>
+    <div class="scanlines" aria-hidden="true"></div>
+
+    <nav class="navbar">
+      <div class="logo">CM</div>
+      <div class="nav-links" id="nav-links">
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <a href="./admin.html" class="nav-link">Admin</a>
+      </div>
+    </nav>
+
+    <main id="page-content"></main>
+
+    <div id="home-sections">
+    <section class="hero" id="hero">
+      <div class="hero-shell">
+        <div class="hero-panel hero-panel-full">
+          <div class="hero-content">
+            <div class="glitch-wrapper">
+              <h1 class="glitch" data-text="AI Developer">AI Dev</h1>
+            </div>
+            <div class="typing-container">
+              <span class="typing-text">Building the future with code &amp; intelligence</span>
+            </div>
+            <p class="hero-description">
+              Specializing in React, TypeScript, and full-stack development with expertise in AI integration,
+              microservices architecture, and cutting-edge web technologies.
+            </p>
+            <a href="#projects" class="cta-btn">View Projects</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="projects-shell">
+        <div class="section-header">
+          <span class="section-tag">portfolio</span>
+          <h2 class="section-title">Featured Projects</h2>
+          <div class="element-indicator" role="tablist" aria-label="Element selector">
+            <button class="element-dot electric active" data-element="electric" aria-label="Electric" type="button"></button>
+            <button class="element-dot fire" data-element="fire" aria-label="Fire" type="button"></button>
+            <button class="element-dot solar" data-element="solar" aria-label="Solar" type="button"></button>
+            <button class="element-dot bio" data-element="bio" aria-label="Bio" type="button"></button>
+            <button class="element-dot water" data-element="water" aria-label="Water" type="button"></button>
+            <button class="element-dot alien" data-element="alien" aria-label="Alien" type="button"></button>
+          </div>
+        </div>
+
+        <div class="projects-grid" id="projects-grid"></div>
+      </div>
+    </section>
+
+    <section class="section cta-section" id="contact">
+      <h2 class="cta-title reveal">Ready to Build Something Extraordinary?</h2>
+      <p class="cta-subtitle reveal">Let's collaborate on your next AI-powered application</p>
+      <div class="contact-shell reveal" id="contact-shell">
+        <div class="contact-grid" id="contact-grid"></div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p></p>
+    </footer>
+
+    </div>
+
+    <script src="./scripts/site-config.js"></script>
+    <script>
+      // Clear localStorage to force fresh config load
+      localStorage.removeItem('siteConfig.v2');
+      localStorage.removeItem('siteConfig.v2.draft');
+    </script>
+    <script src="./scripts/main.js"></script>
+  </body>
+</html>

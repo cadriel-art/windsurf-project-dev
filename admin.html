@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template Admin</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/admin.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">Template Admin</div>
+      <div class="actions">
+        <a class="btn" href="./" target="_blank" rel="noreferrer">Open Preview</a>
+        <a class="btn" href="./?preview=draft" target="_blank" rel="noreferrer">Live Preview (Draft)</a>
+        <button class="btn" id="saveNow" type="button">Save Draft</button>
+        <button class="btn" id="publish" type="button">Publish</button>
+        <button class="btn" id="undo" type="button">Undo</button>
+        <button class="btn" id="redo" type="button">Redo</button>
+        <button class="btn" id="export" type="button">Export JSON</button>
+        <label class="btn file">
+          Import JSON
+          <input id="import" type="file" accept="application/json" />
+        </label>
+        <button class="btn danger" id="reset" type="button">Reset</button>
+      </div>
+    </header>
+
+    <div class="diagnostics" id="diagnostics" aria-live="polite"></div>
+
+    <main class="layout">
+      <section class="panel">
+        <h2>Basics</h2>
+
+        <div class="grid">
+          <label class="wide">
+            <span>Theme Preset</span>
+            <div class="inline">
+              <select id="themePreset"></select>
+              <button class="btn" id="duplicateTheme" type="button">Duplicate</button>
+            </div>
+          </label>
+
+          <label>
+            <span>Logo Text</span>
+            <input id="logoText" type="text" />
+          </label>
+
+          <label class="wide">
+            <span>Site Title (browser tab)</span>
+            <input id="siteTitle" type="text" />
+          </label>
+
+          <label>
+            <span>Logo Image</span>
+            <input id="logoUpload" type="file" accept="image/*" />
+          </label>
+
+          <label>
+            <span>Avatar Image</span>
+            <input id="avatarUpload" type="file" accept="image/*" />
+          </label>
+
+          <label>
+            <span>Hero Headline</span>
+            <input id="heroHeadline" type="text" />
+          </label>
+
+          <label class="wide">
+            <span>Typing Text</span>
+            <input id="heroTyping" type="text" />
+          </label>
+
+          <label class="wide">
+            <span>Hero Description</span>
+            <textarea id="heroDescription" rows="4"></textarea>
+          </label>
+
+          <label>
+            <span>Contact Title</span>
+            <input id="contactTitle" type="text" />
+          </label>
+
+          <label>
+            <span>Contact Subtitle</span>
+            <input id="contactSubtitle" type="text" />
+          </label>
+
+          <label>
+            <span>Contact Email</span>
+            <input id="contactEmail" type="email" />
+          </label>
+
+          <label class="wide">
+            <span>Footer Text</span>
+            <input id="footerText" type="text" />
+          </label>
+
+          <label>
+            <span>GitHub URL</span>
+            <input id="socialGithub" type="url" placeholder="https://github.com/username" />
+          </label>
+
+          <label>
+            <span>LinkedIn URL</span>
+            <input id="socialLinkedIn" type="url" placeholder="https://linkedin.com/in/username" />
+          </label>
+
+          <label>
+            <span>X / Twitter URL</span>
+            <input id="socialTwitter" type="url" placeholder="https://x.com/username" />
+          </label>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Pages</h2>
+        <div class="toolbar">
+          <button class="btn" id="addPage" type="button">Add Page</button>
+          <button class="btn danger" id="deletePage" type="button">Delete Page</button>
+        </div>
+
+        <div class="split">
+          <div class="split-left">
+            <div class="table" id="pages"></div>
+          </div>
+
+          <div class="split-right">
+            <div class="grid">
+              <label>
+                <span>Title</span>
+                <input id="pageTitle" type="text" />
+              </label>
+
+              <label>
+                <span>Slug</span>
+                <input id="pageSlug" type="text" />
+              </label>
+
+              <label>
+                <span>Template</span>
+                <select id="pageTemplate">
+                  <option value="home">Home</option>
+                  <option value="blocks">Blocks</option>
+                </select>
+              </label>
+            </div>
+
+            <h3>Blocks</h3>
+            <div class="toolbar">
+              <button class="btn" id="addBlock" type="button">Add Rich Text Block</button>
+            </div>
+            <div class="table" id="blocks"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Home Builder</h2>
+        <p class="hint">Enable/disable and reorder the Home page sections.</p>
+        <div class="table" id="homeBuilder"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Menus</h2>
+        <p class="hint">Edit the primary navbar menu (add/remove/reorder). Page links use the page slug.</p>
+        <div class="toolbar">
+          <button class="btn" id="addMenuItem" type="button">Add Menu Item</button>
+        </div>
+        <div class="table" id="menuPrimary"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Media Library</h2>
+        <p class="hint">Upload once, reuse everywhere (logo, avatar, later OG image). Stored locally in your browser.</p>
+        <div class="toolbar">
+          <label class="btn file">
+            Upload Image
+            <input id="mediaUpload" type="file" accept="image/*" />
+          </label>
+        </div>
+        <div class="table" id="mediaLibrary"></div>
+      </section>
+
+      <section class="panel">
+        <h2>SEO</h2>
+        <p class="hint">Controls page metadata (title/description, Open Graph image, favicon).</p>
+        <div class="grid">
+          <label class="wide">
+            <span>Meta Title</span>
+            <input id="seoMetaTitle" type="text" placeholder="(defaults to Site Title)" />
+          </label>
+
+          <label class="wide">
+            <span>Meta Description</span>
+            <textarea id="seoMetaDescription" rows="3" placeholder="Short description for search engines"></textarea>
+          </label>
+
+          <label>
+            <span>OG Image (from library)</span>
+            <select id="seoOgImage"></select>
+          </label>
+
+          <label>
+            <span>Favicon (from library)</span>
+            <select id="seoFavicon"></select>
+          </label>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Backups</h2>
+        <p class="hint">Create restore points for Draft or Live. Stored locally in your browser (bounded history).</p>
+        <div class="toolbar">
+          <button class="btn" id="backupDraft" type="button">Backup Draft</button>
+          <button class="btn" id="backupLive" type="button">Backup Live</button>
+          <button class="btn" id="exportDraft" type="button">Export Draft</button>
+          <button class="btn" id="exportLive" type="button">Export Live</button>
+          <label class="btn file">
+            Import → Draft
+            <input id="importDraft" type="file" accept="application/json" />
+          </label>
+          <label class="btn file">
+            Import → Live
+            <input id="importLive" type="file" accept="application/json" />
+          </label>
+        </div>
+        <div class="table" id="backups"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Projects</h2>
+        <div class="toolbar">
+          <button class="btn" id="addProject" type="button">Add Project</button>
+        </div>
+        <div class="table" id="projects"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Advanced (Raw JSON)</h2>
+        <p class="hint">You can edit the full configuration here. Saving will update the preview instantly.</p>
+        <textarea id="rawJson" rows="18" spellcheck="false"></textarea>
+        <div class="toolbar">
+          <button class="btn" id="applyJson" type="button">Apply JSON</button>
+        </div>
+        <div class="status" id="status"></div>
+      </section>
+    </main>
+
+    <script src="./scripts/site-config.js"></script>
+    <script src="./scripts/admin.js"></script>
+  </body>
+</html>
