@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -8,14 +8,18 @@
       href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles/admin.css" />
+    <link rel="stylesheet" href="./styles/admin.min.css" />
   </head>
   <body>
     <header class="topbar">
       <div class="brand">Template Admin</div>
       <div class="actions">
-        <a class="btn" href="./" target="_blank" rel="noreferrer">Open Preview</a>
-        <a class="btn" href="./?preview=draft" target="_blank" rel="noreferrer">Live Preview (Draft)</a>
+        <a class="btn" href="./" target="_blank" rel="noreferrer"
+          >Open Preview</a
+        >
+        <a class="btn" href="./?preview=draft" target="_blank" rel="noreferrer"
+          >Live Preview (Draft)</a
+        >
         <button class="btn" id="saveNow" type="button">Save Draft</button>
         <button class="btn" id="publish" type="button">Publish</button>
         <button class="btn" id="undo" type="button">Undo</button>
@@ -40,7 +44,9 @@
             <span>Theme Preset</span>
             <div class="inline">
               <select id="themePreset"></select>
-              <button class="btn" id="duplicateTheme" type="button">Duplicate</button>
+              <button class="btn" id="duplicateTheme" type="button">
+                Duplicate
+              </button>
             </div>
           </label>
 
@@ -101,18 +107,49 @@
 
           <label>
             <span>GitHub URL</span>
-            <input id="socialGithub" type="url" placeholder="https://github.com/username" />
+            <input
+              id="socialGithub"
+              type="url"
+              placeholder="https://github.com/username"
+            />
           </label>
 
           <label>
             <span>LinkedIn URL</span>
-            <input id="socialLinkedIn" type="url" placeholder="https://linkedin.com/in/username" />
+            <input
+              id="socialLinkedIn"
+              type="url"
+              placeholder="https://linkedin.com/in/username"
+            />
           </label>
 
           <label>
             <span>X / Twitter URL</span>
-            <input id="socialTwitter" type="url" placeholder="https://x.com/username" />
+            <input
+              id="socialTwitter"
+              type="url"
+              placeholder="https://x.com/username"
+            />
           </label>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Themes</h2>
+        <p class="hint">Edit colors and typography for the active theme.</p>
+        <div class="grid">
+          <label>
+            <span>Font Family</span>
+            <input id="themeFontFamily" type="text" placeholder="e.g. 'Inter', sans-serif" />
+          </label>
+          <label>
+            <span>Base Font Size (px)</span>
+            <input id="themeFontSize" type="number" placeholder="16" />
+          </label>
+        </div>
+        <h3>Element Colors</h3>
+        <div class="grid" id="themeColors">
+          <!-- Will be populated by JS -->
         </div>
       </section>
 
@@ -120,7 +157,9 @@
         <h2>Pages</h2>
         <div class="toolbar">
           <button class="btn" id="addPage" type="button">Add Page</button>
-          <button class="btn danger" id="deletePage" type="button">Delete Page</button>
+          <button class="btn danger" id="deletePage" type="button">
+            Delete Page
+          </button>
         </div>
 
         <div class="split">
@@ -151,7 +190,9 @@
 
             <h3>Blocks</h3>
             <div class="toolbar">
-              <button class="btn" id="addBlock" type="button">Add Rich Text Block</button>
+              <button class="btn" id="addBlock" type="button">
+                Add Rich Text Block
+              </button>
             </div>
             <div class="table" id="blocks"></div>
           </div>
@@ -166,16 +207,24 @@
 
       <section class="panel">
         <h2>Menus</h2>
-        <p class="hint">Edit the primary navbar menu (add/remove/reorder). Page links use the page slug.</p>
+        <p class="hint">
+          Edit the primary navbar menu (add/remove/reorder). Page links use the
+          page slug.
+        </p>
         <div class="toolbar">
-          <button class="btn" id="addMenuItem" type="button">Add Menu Item</button>
+          <button class="btn" id="addMenuItem" type="button">
+            Add Menu Item
+          </button>
         </div>
         <div class="table" id="menuPrimary"></div>
       </section>
 
       <section class="panel">
         <h2>Media Library</h2>
-        <p class="hint">Upload once, reuse everywhere (logo, avatar, later OG image). Stored locally in your browser.</p>
+        <p class="hint">
+          Upload once, reuse everywhere (logo, avatar, later OG image). Stored
+          locally in your browser.
+        </p>
         <div class="toolbar">
           <label class="btn file">
             Upload Image
@@ -187,16 +236,26 @@
 
       <section class="panel">
         <h2>SEO</h2>
-        <p class="hint">Controls page metadata (title/description, Open Graph image, favicon).</p>
+        <p class="hint">
+          Controls page metadata (title/description, Open Graph image, favicon).
+        </p>
         <div class="grid">
           <label class="wide">
             <span>Meta Title</span>
-            <input id="seoMetaTitle" type="text" placeholder="(defaults to Site Title)" />
+            <input
+              id="seoMetaTitle"
+              type="text"
+              placeholder="(defaults to Site Title)"
+            />
           </label>
 
           <label class="wide">
             <span>Meta Description</span>
-            <textarea id="seoMetaDescription" rows="3" placeholder="Short description for search engines"></textarea>
+            <textarea
+              id="seoMetaDescription"
+              rows="3"
+              placeholder="Short description for search engines"
+            ></textarea>
           </label>
 
           <label>
@@ -213,12 +272,20 @@
 
       <section class="panel">
         <h2>Backups</h2>
-        <p class="hint">Create restore points for Draft or Live. Stored locally in your browser (bounded history).</p>
+        <p class="hint">
+          Create restore points for Draft or Live. Stored locally in your
+          browser (bounded history).
+        </p>
         <div class="toolbar">
-          <button class="btn" id="backupDraft" type="button">Backup Draft</button>
+          <button class="btn" id="backupDraft" type="button">
+            Backup Draft
+          </button>
           <button class="btn" id="backupLive" type="button">Backup Live</button>
-          <button class="btn" id="exportDraft" type="button">Export Draft</button>
+          <button class="btn" id="exportDraft" type="button">
+            Export Draft
+          </button>
           <button class="btn" id="exportLive" type="button">Export Live</button>
+          <button class="btn danger" id="resetLive" type="button">Reset Live</button>
           <label class="btn file">
             Import → Draft
             <input id="importDraft" type="file" accept="application/json" />
@@ -241,7 +308,10 @@
 
       <section class="panel">
         <h2>Advanced (Raw JSON)</h2>
-        <p class="hint">You can edit the full configuration here. Saving will update the preview instantly.</p>
+        <p class="hint">
+          You can edit the full configuration here. Saving will update the
+          preview instantly.
+        </p>
         <textarea id="rawJson" rows="18" spellcheck="false"></textarea>
         <div class="toolbar">
           <button class="btn" id="applyJson" type="button">Apply JSON</button>

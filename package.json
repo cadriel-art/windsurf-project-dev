@@ -1,0 +1,32 @@
+{
+  "name": "windsurf-project",
+  "version": "1.0.0",
+  "description": "A static sci-fi portfolio template with a local-only “mini CMS” editor.",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "lint": "eslint scripts/*.js --fix",
+    "lint:check": "eslint scripts/*.js",
+    "format": "prettier --write scripts/*.js styles/*.css *.html",
+    "build:js": "terser scripts/main.js -o scripts/main.min.js --compress --mangle && terser scripts/admin.js -o scripts/admin.min.js --compress --mangle && terser scripts/site-config.js -o scripts/site-config.min.js --compress --mangle",
+    "build:css": "cleancss styles/style.css -o styles/style.min.css && cleancss styles/cards.css -o styles/cards.min.css && cleancss styles/admin.css -o styles/admin.min.css",
+    "build": "npm run build:js && npm run build:css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cadriel-art/windsurf-project-dev.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cadriel-art/windsurf-project-dev/issues"
+  },
+  "homepage": "https://github.com/cadriel-art/windsurf-project-dev#readme",
+  "devDependencies": {
+    "clean-css-cli": "^5.6.3",
+    "eslint": "^9.39.2",
+    "prettier": "^3.7.4",
+    "terser": "^5.44.1"
+  }
+}
